@@ -10,28 +10,56 @@
 
 
 
+const URL = "https://itunes.apple.com/search?term=";
+var input = document.querySelector("#input");
+var submit = document.querySelector("#submit");
+let resultsDisplay = document.querySelector(".mainContent");
+var audio = document.querySelector("audio");
 
-var searchInput = document.getElementById("searchInput");
-let resultsDisplay = document.querySelector(".results");
-
-
-
-searchInput.addEventListener("keypress", function (e) {
-  if (e.keyCode === 13) {
-    let url = "https://itunes.apple.com/search?term=" + searchInput.value;
-    axios.get(url)
-      .then(function (response) {
-        console.log(response);
-        let results = response.data.results;
-        resultsDisplay.innerHTML = '';
-        for (i = 0; i < results.length; i++) {
-          let data = results[i];
-          const art =
-            `<img src="${data.artworkUrl100}">`
-          resultsDisplay.innerHTML += art;
-        }
-      });
-  } else {
-    return;
-  }
+// searchInput.addEventListener("keypress", function (e) {
+//   if (e.keyCode === 13) {
+submit.addEventListener("click", function (e) {
+  e.preventDefault();
+  let userInput = input.value;
+  axios.get(url)
+    .then(function (response) {
+      let results = response.data.results;
+      populateHTML(results)
+    });
 });
+
+resultsDisplay.addEventListener("click", function (e) {
+
+  audio.setAttribute("src", e.target.value);
+})
+
+function populateHTML(res) {
+  resultsDisplay.innerHTML = " ";
+
+  for (i = 0; i < results.length; i++) {
+    let data = results[i];
+    let artistName = results[i].artistName;
+    let albumArtwork = results[i].artworkUrl100;
+    let trackName = results[i].trackName;
+    let preview = results[i].previewUrl;
+
+    resultsDisplay.innerHTML += `
+          
+      <div class ="container-results">
+        <div class ="image-parent">
+          <img src ="${albumArtwork}">
+      </div>
+            
+      <div class="content-parent">
+        <p>${artistName}</p>
+        <p>${trackName}</p>
+        <button type="button" value =${preview}>Play</button>
+      </div>
+    </div>
+    `
+  }
+}
+
+
+
+

@@ -8,20 +8,25 @@
 </head>
 
 <body>
+
   <div class="container">
+
     <header>
       <h1>Really Awesome Music Site</h1>
     </header>
+
     <section class="player">
-      <audio class="music-player" controls="controls" src=""></audio>
+      <audio class="music-player" controls="controls" src="" autoplay></audio>
     </section>
     <section class="search">
-      <!-- <form class="search-form"> -->
-      <input id="searchInput" type="text">
-      <!-- </form> -->
+      <form class="search-form">
+        <input id="searchInput" type="text">
+        <input id="submit" type="submit" value="submit">
+      </form>
     </section>
-    <section class="results"></section>
+    <section class="mainContent"></section>
   </div>
+
   <script src="main.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
