@@ -1,4 +1,34 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: gray;
 }
 
+.mainContent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.container-results {
+  max-width: 10%;
+  padding: 20px;
+}
+
+.player {
+  display: flex;
+  justify-content: center;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+h1 {
+  text-align: center;
+}
